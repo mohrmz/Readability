@@ -34,7 +34,12 @@
 #label_prop_model.fit(iris.data, labels)
 #print(labels)
 
-text = ["On", "the", "28", "Apr.", "2010", ",", "Dr.", "Banks", "bought", "a", "chair", "for", "£35", "."]
+#text = ["On", "the", "28", "Apr.", "2010", ",", "Dr.", "Banks", "bought", "a", "chair", "for", "£35", "."]
 
-from normalise import tokenize_basic
-normalise(text, verbose=True)
+#from normalise import tokenize_basic
+#normalise(text, verbose=True)
+
+from MeaninglessNames import *
+
+def abbreviated_names(input):
+    return meaningless_names(input)

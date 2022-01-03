@@ -3,7 +3,7 @@ from Types import *
 import pandas as pd
 from importlib import import_module
 from NameSmells import *
-
+from Smells.InconsistentParts import *
 class NameSmellDetector:
     def __init__(self, input,type):
         words = token_to_words(self,input)
