@@ -7,8 +7,8 @@ Software maintenance accounts for a large portion of the software life cycle cos
 # Procedure (s) and steps
 
 All proposed methods and innovations:\
-1- Automatic detection of method name odors \
-2- Automatic detection of class name odors \
+1- Automatic detection of method name smells \
+2- Automatic detection of class name smells \
 3- Select the appropriate name by changing the current name or from the name of similar entities \
 4- Rename actions on the code \
 5- Assessing the readability of the code before and after reconstruction 
