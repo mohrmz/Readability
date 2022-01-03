@@ -39,7 +39,7 @@
 #from normalise import tokenize_basic
 #normalise(text, verbose=True)
 
-from MeaninglessNames import *
+from .MeaninglessNames import *
 
 def abbreviated_names(input):
     return meaningless_names(input)

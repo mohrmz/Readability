@@ -10,10 +10,10 @@ name_smells={
     ,'MultipleWords':['multiple_words','']
     ,'NumericSuffix':['numeric_suffix','']
     ,'ShortNames':['short_names','']
-    ,'DisinformativeName':['disinformative_name','']
     ,'NonpronounceableName ':['nonpronounceable_name','']
     ,'InconsistentParts' :['inconsistent_parts','']
     ,'AbbreviatedNames' :['abbreviated_names','']
+    ,'DisinformativeName':['disinformative_name','']
     #,
     
 }

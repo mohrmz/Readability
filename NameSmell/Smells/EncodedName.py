@@ -1,7 +1,7 @@
 
 from encodings.aliases import aliases
 import base64
-from MeaninglessNames import *
+from .MeaninglessNames import *
 
 def encoded_name(input):
     codec = ['cp437','cp852','cp1250','iso8859_2','mac_latin2','utf_32','utf_32_be','utf_32_le','utf_7','utf_8','utf_8_sig']
