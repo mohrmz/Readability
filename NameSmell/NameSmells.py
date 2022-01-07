@@ -1,4 +1,4 @@
-# key: name smell file, value: name smell method
+# key: name smell file, value: name smell method , type = object type 
 
 name_smells={
      'AbbreviatedNames' :['abbreviated_names','']
@@ -18,5 +18,6 @@ name_smells={
     ,'NumericSuffix':['numeric_suffix','']
     ,'ShortNames':['short_names',''] 
     ,'VagueWords':['vague_words','']
+    ,'VestigialHungarianNotation':['vestigial_hungarian_notation',''] 
     ,'WrongNames':['wrong_names','']    
 }
