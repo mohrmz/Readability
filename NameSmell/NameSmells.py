@@ -17,7 +17,7 @@ name_smells={
     ,'NonsearchableName':['nonsearchable_name','']
     ,'NumericSuffix':['numeric_suffix','']
     ,'ShortNames':['short_names',''] 
-    ,'VagueWords':['vague_words','']
+    ,'VagueWords':['vague_words','Other']
     ,'VestigialHungarianNotation':['vestigial_hungarian_notation',''] 
     ,'WrongNames':['wrong_names','']    
 }

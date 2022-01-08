@@ -3,7 +3,6 @@ from Types import *
 import pandas as pd
 from importlib import import_module
 from NameSmells import *
-from Smells.InconsistentParts import *
 
 class NameSmellDetector:
 
@@ -31,4 +30,4 @@ class NameSmellDetector:
             print ("module not found: " + file_name)        
             
       
-NameSmellDetector('getname',Types.Method,['name'])
+NameSmellDetector('getName',Types.Method,['name'])
