@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 from NameSmell.SegmentSTR import *
-from Preproccess import *
+
 
 def method_name_recommendation(self,method):
 
