@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog
 from Utilization.undrestand_facilities import *
 from Utilization.constants import *
+from Utilization.source_meter import *
 
 class Main:
 
@@ -17,6 +18,8 @@ class Main:
         setPathbtn.pack(side=tk.LEFT)
         ExtractUdbsbtn = tk.Button(win, text='ExtractUdbs', command=create_understand_database_from_project)
         ExtractUdbsbtn.pack(side=tk.LEFT)
+        ExtractSourceMeterbtn = tk.Button(win, text='ExtractSourceMeter', command=source_meter_extract)
+        ExtractSourceMeterbtn.pack(side=tk.LEFT)
         win.mainloop()
 
     def search_for_file_path(self,root):
@@ -25,5 +28,6 @@ class Main:
         os.chdir(rootpath)
         return   rootpath
 
+  
 if __name__ == '__main__':
     Main()
