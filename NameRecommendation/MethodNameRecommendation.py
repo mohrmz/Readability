@@ -2,7 +2,12 @@ import os
 import numpy as np
 import pandas as pd
 from NameSmell.SegmentSTR import *
-
+from sklearn.neighbors import NearestNeighbors
+from Preproccess import *
+from nltk.corpus import wordnet
+#nltk.download()
+import enchant
+eng_dict = enchant.Dict("en_US")
 
 def method_name_recommendation(self,method):
 
@@ -23,7 +28,7 @@ def method_name_recommendation(self,method):
         RecommendedMethodID = recommended
         RecommendedMethodName = learned_dataX.iloc[[recommended], :].values[0, 3]
         RecommendedMethodNamechars = segment_str(RecommendedMethodName)
-        Charscores=[]
+        CharsScores=[]
         for expected_char in ExpectedMethodNamechars:
             expected_sysnset = wordnet.synsets(expected_char)
             MaxScopeSimilarityScore=0
