@@ -9,10 +9,12 @@ from nltk.corpus import wordnet
 import enchant
 eng_dict = enchant.Dict("en_US")
 
+
 def method_name_recommendation(self,method):
 
     learned_data = pd.read_pickle(self.MethodsDatapkl)
-    learned_dataX, learned_dataY = split_files(learned_data)
+    learned_dataX, learned_dataY = split_files(learned_data,10)
+    print(learned_dataX)
     neigh = NearestNeighbors(n_neighbors=self.nneighbors, algorithm=self.algorithm, metric=self.metric,
                             n_jobs=self.n_jobs).fit(learned_dataX)
     
