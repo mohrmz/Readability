@@ -11,13 +11,34 @@ def source_meter_extract_metrics():
             os.system('cmd /c "{0}"'.format(command_))
 
 def source_meter_pre_proccess_metric_csv_files():
+        sourcemeter_result_dir=os.path.join(get_rootpath(), 'Results')
         if not os.path.isfile(MethodsDataDir):
-            sourcemeter_result_dir=os.path.join(get_rootpath(), 'Results')
+            proccessed_files = pd.DataFrame()
+            frames = []
+
+            
             all_method_csv_files = [file for path, subdir, files in os.walk(sourcemeter_result_dir)
                  for file in glob.glob(os.path.join(path, '*Method.csv'))]
             for method_csv_file in all_method_csv_files:
-                print(pre_process_sourcemeter_csvs(method_csv_file))
-                return
+                frames.append(pre_process_sourcemeter_csvs(method_csv_file,47))
+            
+            proccessed_files = pd.concat(frames)
+            proccessed_files.to_pickle(MethodsDataDir)
+            del proccessed_files
+            frames.clear()
 
+        if not os.path.isfile(ClassesDataDir):
+            proccessed_files = pd.DataFrame()
+            frames = []     
+
+            all_class_csv_files = [file for path, subdir, files in os.walk(sourcemeter_result_dir)
+                 for file in glob.glob(os.path.join(path, '*Class.csv'))]
+            for class_csv_file in all_class_csv_files:
+                frames.append(pre_process_sourcemeter_csvs(class_csv_file,70))
+            
+            proccessed_files = pd.concat(frames)
+            proccessed_files.to_pickle(ClassesDataDir)
+            del proccessed_files
+            frames.clear()    
 
            

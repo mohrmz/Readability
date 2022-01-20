@@ -2,8 +2,9 @@ import os
 
 
 MethodsDatapkl='Data\MethodsData.pkl'
+ClassesDatapkl='Data\ClassesData.pkl'
 MethodsDataDir=os.path.join(os.path.dirname(os.path.realpath(__file__)), MethodsDatapkl).replace('\\','/')
-MethodsMetricsDir='Data/MethodsMetrics'
+ClassesDataDir=os.path.join(os.path.dirname(os.path.realpath(__file__)), ClassesDatapkl).replace('\\','/')
 nneighbors=10
 algorithm='auto'
 metric='minkowski'
