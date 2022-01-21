@@ -2,7 +2,7 @@ import re
 import enchant
 eng_dict = enchant.Dict("en_US")
 
-def segment_str(self,inputchars):
+def segment_str(inputchars):
             words = []
             for working_chars in inputchars:
                 for i in range(len(working_chars), 1, -1):

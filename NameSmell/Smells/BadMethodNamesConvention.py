@@ -1,9 +1,9 @@
 import nltk
 import re
-from Types import *
+from NameSmell.Types import *
 #nltk.download('punkt')
 
-def bad_method_names_convention(input):
+def bad_method_names_convention(input,*args):
     result = list()
     for word in input:
         tokens = nltk.tokenize.word_tokenize(word)

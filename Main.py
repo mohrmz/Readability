@@ -6,6 +6,7 @@ from Utilization.constants import *
 from Utilization.source_meter import *
 from NameRecommendation.NameSmellRefactor import *
 
+
 class Main:
 
     def __init__(self):

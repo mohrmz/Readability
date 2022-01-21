@@ -41,5 +41,5 @@
 
 from .MeaninglessNames import *
 
-def abbreviated_names(input):
+def abbreviated_names(input,*args):
     return meaningless_names(input)

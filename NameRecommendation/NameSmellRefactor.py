@@ -1,3 +1,4 @@
+import this
 from webbrowser import get
 import pandas as pd
 import glob,os,sys
@@ -23,4 +24,5 @@ def extract_names():
 
 def namesmell_refactor():
     for index, row in extract_names().iterrows():
-        print(NameSmellDetector(row[0]))
+        print(NameSmellDetector.namesmell_detect(row[0],Types.Method,['name']))
+        return

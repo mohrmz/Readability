@@ -6,28 +6,25 @@ from .NameSmells import *
 
 class NameSmellDetector:
 
-    def __init__(self, input,type,*args):
-        words = token_to_words(self,input)
+    @classmethod
+    def namesmell_detect(cls, input_name,type,*args):
+        tokenized_name = token_to_words(input_name)
         result = dict()
-        df = pd.DataFrame(name_smells)
-        for column_name, column in df.transpose().iterrows():
-            key , valuetype = column
-            if valuetype == '' or valuetype == type.name:
-                result.update({column_name : self.dynamic_import(column_name,key,words)})
-            elif valuetype == 'Other' :
-                result.update({column_name : self.dynamic_import(column_name,key,words,list(args)[0])})
-        print(result)
+        namesmells = pd.DataFrame(name_smells)
+        for namesmell_name, namesmell_conditions in namesmells.transpose().iterrows():
+            namesmell_method_name , valuetype = namesmell_conditions
+            if valuetype == Types.Both.name or valuetype == type.name:
+                result.update({namesmell_name : cls.dynamic_import(namesmell_name,namesmell_method_name,tokenized_name,list(args)[0])})
+        return result
 
-    def dynamic_import(self,file_name, method_name,input,*args):
+    @classmethod
+    def dynamic_import(cls,namesmell_name, namesmell_method_name,tokenized_name,*args):
         try:
-            module = import_module('Smells.'+file_name)
-            method = getattr(module, method_name)
-            if (len(list(args))>0) :
-                return method(input,list(args)[0])
-            else:
-                return method(input)
+            module = import_module('NameSmell.Smells.'+namesmell_name)
+            method = getattr(module, namesmell_method_name)
+            return method(tokenized_name,list(args)[0])
         except ImportError:
-            print ("module not found: " + file_name)        
+            print ("module not found: " + namesmell_name)        
             
-      
-NameSmellDetector('getName',Types.Method,['name'])
+if __name__ == '__main__':   
+    NameSmellDetector.namesmell_detect('getName',Types.Method,['name'])

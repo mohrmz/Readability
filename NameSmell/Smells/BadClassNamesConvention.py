@@ -3,7 +3,7 @@ import re
 from Types import *
 #nltk.download('punkt')
 
-def bad_class_names_convention(input):
+def bad_class_names_convention(input,*args):
     result = list()
     for word in input:
         tokens = nltk.tokenize.word_tokenize(word)

@@ -1,7 +1,7 @@
 import nltk
 #nltk.download('punkt')
 
-def abstract_names(input):
+def abstract_names(input,*args):
     result = list()
     for word in input:
         tokens = nltk.tokenize.word_tokenize(word)

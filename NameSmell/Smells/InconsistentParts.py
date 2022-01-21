@@ -1,6 +1,6 @@
-from Similarity import  similarity
+from NameSmell.Similarity import  similarity
 from statistics import mean
-from overloading import overload
+
 
 
 
