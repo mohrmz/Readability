@@ -1,5 +1,5 @@
 import nltk
-from SegmentSTR import *
+from .SegmentSTR import *
 
 def token_to_words(self,input):
     inputs = nltk.tokenize.word_tokenize(input)

@@ -16,7 +16,6 @@ def pre_process_udb_csvs(metric_file):
     return csv_file
 
 def pre_process_sourcemeter_csvs(metric_file,column_numbers):  
-    number = preprocessing.LabelEncoder()
     csv_file = pd.read_csv(metric_file, index_col=None, header=None, low_memory=False)
     csv_file = csv_file.iloc[:, 0:column_numbers]
     csv_file = csv_file.iloc[:, :].replace('-nan(ind)', 0)

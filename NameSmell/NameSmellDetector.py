@@ -1,8 +1,8 @@
-from TokenToWords import *
-from Types import *
+from .TokenToWords import *
+from .Types import *
 import pandas as pd
 from importlib import import_module
-from NameSmells import *
+from .NameSmells import *
 
 class NameSmellDetector:
 
