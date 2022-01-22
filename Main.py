@@ -22,14 +22,14 @@ class Main:
         #ExtractUdbsbtn.pack(side=tk.LEFT)
         ExtractSourceMeterbtn = tk.Button(win, text='Extract Source Meter Metrics', command=source_meter_extract_metrics)
         ExtractSourceMeterbtn.pack(side=tk.LEFT)
-        PreProccessSourceMeterMetrics = tk.Button(win, text='Pre Proccess Source Meter Metrics Files', command=source_meter_pre_proccess_metric_csv_files)
-        PreProccessSourceMeterMetrics.pack(side=tk.LEFT)
+        LearnFromSourceMeterMetricsFiles = tk.Button(win, text='Learn From Source Meter Metrics Files', command=learn_from_metric_files)
+        LearnFromSourceMeterMetricsFiles.pack(side=tk.LEFT)
         NameSmellRefactor = tk.Button(win, text='NameSmell Refactor', command=namesmell_refactor)
         NameSmellRefactor.pack(side=tk.LEFT)
         win.mainloop()
 
     def search_for_file_path(self,root):
-        directory = tk.filedialog.askdirectory(parent=root, initialdir=r'D:/RamezaniEftekharZadeh/java-med/java-med/training', title='Please Select Java Project Directory TO Extract Udbs')
+        directory = tk.filedialog.askdirectory(parent=root, initialdir=r'D:/RamezaniEftekharZadeh/java-med/java-med/test', title='Please Select Java Project Directory')
         rootpath = directory + "/"
         os.chdir(rootpath)
         return   rootpath

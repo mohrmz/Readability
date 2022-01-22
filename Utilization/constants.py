@@ -9,7 +9,9 @@ nneighbors=10
 algorithm='auto'
 metric='minkowski'
 n_jobs=4
-
+MethodIndex=47
+ClassIndex=60
+SplitXYIndex=10
 
 
 PYTHONPATH = os.environ.get("PYTHONPATH") 
@@ -29,4 +31,6 @@ def dir_path():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     return dir_path
 
-       
+def sourcemeter_result_dir():
+    return os.path.join(get_rootpath(), 'Results')
+    

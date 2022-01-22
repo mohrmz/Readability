@@ -1,28 +1,28 @@
-import this
 from webbrowser import get
 import pandas as pd
-import glob,os,sys
 from Utilization.constants import *
 from .Preproccess import *
 from NameSmell.NameSmellDetector import *
 from NameSmell.Types import *
-
-def extract_names():
-    sourcemeter_result_dir=os.path.join(get_rootpath(), 'Results')
-    proccessed_files = pd.DataFrame()
-    frames = []
-
-    
-    all_method_csv_files = [file for path, subdir, files in os.walk(sourcemeter_result_dir)
-            for file in glob.glob(os.path.join(path, '*Method.csv'))]
-    for method_csv_file in all_method_csv_files:
-        frames.append(get_csvs_names(method_csv_file))
-    
-    proccessed_files = pd.concat(frames)
-    return proccessed_files
-
+from .MethodNameRecommendation import *
+from Utilization.source_meter import *
+from NameSmell.Types import *
 
 def namesmell_refactor():
-    for index, row in extract_names().iterrows():
-        print(NameSmellDetector.namesmell_detect(row[0],Types.Method,['name']))
-        return
+    
+    learned_data = pd.read_pickle(MethodsDataDir)
+    learned_dataX, learned_dataY = split_files(learned_data,SplitXYIndex)
+
+    csv_type_files =[source_meter_pre_proccess_metric_csv_files(Types.Method),
+    ]
+    
+    for type in [Types.Method,Types.Class]:
+        csv = source_meter_pre_proccess_metric_csv_files(type)
+        for row in range(1,len(csv)) :
+            print(row)
+            name = correct_names(csv.iloc[row, 1])
+            print(name)
+            if True in NameSmellDetector.namesmell_detect(name,type,['name']).values():
+                test_dataX, test_dataY = [csv.iloc[row:row+1, 10:], csv.iloc[row:row+1, :10]]
+                print(method_name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY))
+            return

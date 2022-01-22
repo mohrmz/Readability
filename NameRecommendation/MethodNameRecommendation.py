@@ -2,27 +2,32 @@ import os
 import numpy as np
 import pandas as pd
 from NameSmell.SegmentSTR import *
-from sklearn.neighbors import NearestNeighbors
-from Preproccess import *
+#from sklearn.neighbors import NearestNeighbors
+from sklearn.neighbors import KNeighborsClassifier
+from .Preproccess import *
 from nltk.corpus import wordnet
+from Utilization.constants import *
 #nltk.download()
 import enchant
 eng_dict = enchant.Dict("en_US")
 
 
-def method_name_recommendation(self,method):
+def method_name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY):
 
-    learned_data = pd.read_pickle(self.MethodsDatapkl)
-    learned_dataX, learned_dataY = split_files(learned_data,10)
-    print(learned_dataX)
-    neigh = NearestNeighbors(n_neighbors=self.nneighbors, algorithm=self.algorithm, metric=self.metric,
-                            n_jobs=self.n_jobs).fit(learned_dataX)
-    
-    ExpectedMethodID = method.index
-    ExpectedMethodName = method.values[0, 3]
+
+
+    #neigh = NearestNeighbors(n_neighbors=nneighbors, algorithm=algorithm, metric=metric,
+    #                        n_jobs=n_jobs).fit(learned_dataX)
+    classifier = KNeighborsClassifier(n_neighbors=nneighbors, algorithm=algorithm, metric=metric,n_jobs=n_jobs)
+    classifier.fit(learned_dataX, learned_dataY)
+    y_pred = classifier.predict(test_dataX)
+    print(y_pred)
+    return
+    ExpectedMethodID = 1
+    ExpectedMethodName = method['Name']
     ExpectedMethodNamechars = segment_str(ExpectedMethodName)
 
-    distances, indices = neigh.kneighbors(method, self.nneighbors)                                 
+    distances, indices = neigh.kneighbors(method, nneighbors)                                 
     recommended_names = indices[0]
     ListResult = []
     
