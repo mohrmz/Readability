@@ -7,7 +7,8 @@ def segment_str(inputchars):
             for working_chars in inputchars:
                 for i in range(len(working_chars), 1, -1):
                     segment = working_chars[:i]
-                    if eng_dict.check(segment):
+                    if eng_dict.check(segment) and not re.match('\b[a-zA-Z]\b',segment):
+                        print(segment)
                         words.append(segment)
                         working_chars = working_chars[i:]
                         break

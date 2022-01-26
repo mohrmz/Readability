@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 from NameSmell.SegmentSTR import *
-#from sklearn.neighbors import NearestNeighbors
+from sklearn.neighbors import NearestNeighbors
 from sklearn.neighbors import KNeighborsClassifier
 from .Preproccess import *
 from nltk.corpus import wordnet
@@ -16,25 +16,29 @@ def method_name_recommendation(test_dataX,test_dataY,learned_dataX, learned_data
 
 
 
-    #neigh = NearestNeighbors(n_neighbors=nneighbors, algorithm=algorithm, metric=metric,
-    #                        n_jobs=n_jobs).fit(learned_dataX)
-    classifier = KNeighborsClassifier(n_neighbors=nneighbors, algorithm=algorithm, metric=metric,n_jobs=n_jobs)
+    neigh = NearestNeighbors(n_neighbors=Neighbors, algorithm=Algorithm, metric=Metric,
+                            n_jobs=N_jobs).fit(learned_dataX)
+    classifier = KNeighborsClassifier(n_neighbors=Neighbors, algorithm=Algorithm, metric=Metric,n_jobs=N_jobs)
     classifier.fit(learned_dataX, learned_dataY)
     y_pred = classifier.predict(test_dataX)
-    print(y_pred)
-    return
+    print(y_pred.tolist()[0][1])
     ExpectedMethodID = 1
-    ExpectedMethodName = method['Name']
+    print(test_dataY.iloc[:,1].values[0])
+    ExpectedMethodName = correct_names(test_dataY.iloc[:,1].values[0])
     ExpectedMethodNamechars = segment_str(ExpectedMethodName)
-
-    distances, indices = neigh.kneighbors(method, nneighbors)                                 
+    print(ExpectedMethodNamechars)
+    distances, indices = neigh.kneighbors(test_dataX, Neighbors)                                 
     recommended_names = indices[0]
     ListResult = []
-    
+    print(distances)
+    print(indices)
     for recommended in recommended_names:
         RecommendedMethodID = recommended
-        RecommendedMethodName = learned_dataX.iloc[[recommended], :].values[0, 3]
+        #print(learned_dataY.iloc[[recommended], 1].values[0])
+        RecommendedMethodName = correct_names(learned_dataY.iloc[[recommended], 1].values[0])
+        print(RecommendedMethodName)
         RecommendedMethodNamechars = segment_str(RecommendedMethodName)
+        print(RecommendedMethodNamechars)
         CharsScores=[]
         for expected_char in ExpectedMethodNamechars:
             expected_sysnset = wordnet.synsets(expected_char)
@@ -46,7 +50,9 @@ def method_name_recommendation(test_dataX,test_dataY,learned_dataX, learned_data
                     SimilarityScore = (0 if SimilarityScore is None else SimilarityScore)
                     MaxScopeSimilarityScore = (SimilarityScore if SimilarityScore > MaxScopeSimilarityScore  else MaxScopeSimilarityScore)
             CharsScores.append(MaxScopeSimilarityScore)
-
+        print(ExpectedMethodNamechars)
+        print('-')
+        print(RecommendedMethodNamechars)
         SameWordsCount = len([value for value in ExpectedMethodNamechars if value in RecommendedMethodNamechars])
         Precision = SameWordsCount/len(RecommendedMethodNamechars)
         Recall = SameWordsCount/len(ExpectedMethodNamechars)
@@ -56,6 +62,7 @@ def method_name_recommendation(test_dataX,test_dataY,learned_dataX, learned_data
         ListResult.append([ExpectedMethodID,ExpectedMethodName,RecommendedMethodName,RecommendedMethodID,WuPalmerScore,Precision,Recall,f1score])
 
     result = pd.DataFrame(ListResult)
+    print(result)
     result = result.sort_values(by=[7, 4], ascending=False)
     bestresult = result.head(1).values[0]
     print(bestresult)
