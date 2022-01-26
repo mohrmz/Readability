@@ -12,7 +12,7 @@ N_jobs=8
 MethodIndex=47
 ClassIndex=60
 SplitXYIndex=10
-
+InitiateUndrestand=False
 
 PYTHONPATH = os.environ.get("PYTHONPATH") 
 

@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import pandas as pd
-from NameSmell.SegmentSTR import *
+from NameSmell.TokenToWords import *
 from sklearn.neighbors import NearestNeighbors
 from sklearn.neighbors import KNeighborsClassifier
 from .Preproccess import *
@@ -23,9 +23,8 @@ def method_name_recommendation(test_dataX,test_dataY,learned_dataX, learned_data
     y_pred = classifier.predict(test_dataX)
     print(y_pred.tolist()[0][1])
     ExpectedMethodID = 1
-    print(test_dataY.iloc[:,1].values[0])
     ExpectedMethodName = correct_names(test_dataY.iloc[:,1].values[0])
-    ExpectedMethodNamechars = segment_str(ExpectedMethodName)
+    ExpectedMethodNamechars = token_to_words(ExpectedMethodName)
     print(ExpectedMethodNamechars)
     distances, indices = neigh.kneighbors(test_dataX, Neighbors)                                 
     recommended_names = indices[0]
@@ -36,8 +35,7 @@ def method_name_recommendation(test_dataX,test_dataY,learned_dataX, learned_data
         RecommendedMethodID = recommended
         #print(learned_dataY.iloc[[recommended], 1].values[0])
         RecommendedMethodName = correct_names(learned_dataY.iloc[[recommended], 1].values[0])
-        print(RecommendedMethodName)
-        RecommendedMethodNamechars = segment_str(RecommendedMethodName)
+        RecommendedMethodNamechars = token_to_words(RecommendedMethodName)
         print(RecommendedMethodNamechars)
         CharsScores=[]
         for expected_char in ExpectedMethodNamechars:
@@ -50,9 +48,6 @@ def method_name_recommendation(test_dataX,test_dataY,learned_dataX, learned_data
                     SimilarityScore = (0 if SimilarityScore is None else SimilarityScore)
                     MaxScopeSimilarityScore = (SimilarityScore if SimilarityScore > MaxScopeSimilarityScore  else MaxScopeSimilarityScore)
             CharsScores.append(MaxScopeSimilarityScore)
-        print(ExpectedMethodNamechars)
-        print('-')
-        print(RecommendedMethodNamechars)
         SameWordsCount = len([value for value in ExpectedMethodNamechars if value in RecommendedMethodNamechars])
         Precision = SameWordsCount/len(RecommendedMethodNamechars)
         Recall = SameWordsCount/len(ExpectedMethodNamechars)
