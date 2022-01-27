@@ -1,4 +1,4 @@
-from webbrowser import get
+
 import pandas as pd
 from Utilization.constants import *
 from .Preproccess import *
@@ -9,7 +9,7 @@ from Utilization.source_meter import *
 from NameSmell.Types import *
 
 def namesmell_refactor():
-    
+
     learned_data = pd.read_pickle(MethodsDataDir)
     learned_dataX, learned_dataY = split_files(learned_data,SplitXYIndex)
     
@@ -17,6 +17,7 @@ def namesmell_refactor():
         csv = source_meter_pre_proccess_metric_csv_files(type)
         for row in range(1,len(csv)) :
             print(row)
+            #row =31
             name = correct_names(csv.iloc[row, 1])
             print(name)
             if True in NameSmellDetector.namesmell_detect(name,type,['name']).values():
