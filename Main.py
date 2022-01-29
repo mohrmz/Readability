@@ -18,8 +18,6 @@ class Main:
         win.geometry('700x100')
         setPathbtn = tk.Button(win, text='Set Path', command=lambda: self.search_for_file_path(win))
         setPathbtn.pack(side=tk.LEFT)
-        #ExtractUdbsbtn = tk.Button(win, text='Extract Udb Files', command=create_understand_database_from_project)
-        #ExtractUdbsbtn.pack(side=tk.LEFT)
         ExtractSourceMeterbtn = tk.Button(win, text='Extract Source Meter Metrics', command=source_meter_extract_metrics)
         ExtractSourceMeterbtn.pack(side=tk.LEFT)
         LearnFromSourceMeterMetricsFiles = tk.Button(win, text='Learn From Source Meter Metrics Files', command=learn_from_metric_files)

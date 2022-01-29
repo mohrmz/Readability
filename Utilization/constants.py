@@ -7,16 +7,20 @@ MethodsDataDir=os.path.join(os.path.dirname(os.path.realpath(__file__)), Methods
 ClassesDataDir=os.path.join(os.path.dirname(os.path.realpath(__file__)), ClassesDatapkl).replace('\\','/')
 Neighbors=10
 Algorithm='auto'
-Metric='minkowski'
+Metric='euclidean'
 N_jobs=8
 MethodIndex=47
 ClassIndex=60
 SplitXYIndex=10
 InitiateUndrestand=False
-
+Uselemmatize=True
+Usestem=True
+UseWordnet=True
+UseEnchant=True
+PrintSegmentChars=False
+printRecommandNameResult=False
+UseKNeighborsClassifier=False
 PYTHONPATH = os.environ.get("PYTHONPATH") 
-
-
 undrestand_directory = PYTHONPATH.replace('\\','/')
 undrestand_directory = undrestand_directory.replace('Python','')
 
