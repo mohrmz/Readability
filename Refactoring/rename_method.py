@@ -9,9 +9,9 @@ except ModuleNotFoundError:
 from antlr4 import *
 from antlr4.TokenStreamRewriter import TokenStreamRewriter
 
-from gen.javaLabeled.JavaLexer import JavaLexer
-from gen.javaLabeled.JavaParserLabeled import JavaParserLabeled
-from gen.javaLabeled.JavaParserLabeledListener import JavaParserLabeledListener
+from Refactoring.gen.javaLabeled.JavaLexer import JavaLexer
+from Refactoring.gen.javaLabeled.JavaParserLabeled import JavaParserLabeled
+from Refactoring.gen.javaLabeled.JavaParserLabeledListener import JavaParserLabeledListener
 
 
 class RenameMethodListener(JavaParserLabeledListener):
@@ -187,7 +187,7 @@ def rename_method(java_file_path, scope_class_name, target_method_name, new_name
     walker = ParseTreeWalker()
     walker.walk(listener, tree)
     if listener.changed:
-        print(java_file_path)
+        #print(java_file_path)
         new_file = open(file=java_file_path, mode='w')
         new_file.write(listener.token_stream_rewriter.getDefaultText().replace('\r', ''))
 
