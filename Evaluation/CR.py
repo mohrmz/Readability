@@ -7,3 +7,4 @@ def cr(input,*args):
         result.append(len(tk.tokenize(w)))
     return sum(result)/len(result)
      
+     
