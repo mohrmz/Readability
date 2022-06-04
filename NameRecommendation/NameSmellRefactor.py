@@ -9,6 +9,7 @@ from .NameRecommendation import *
 from Utilization.source_meter import *
 from NameSmell.Types import *
 from Refactoring.rename import *
+from Evaluation.NameEvaluation import *
 
 def namesmell_refactor():
 
@@ -27,5 +28,13 @@ def namesmell_refactor():
                 test_dataX, test_dataY = [csv.iloc[row:row+1, SplitXYIndex:], csv.iloc[row:row+1, :SplitXYIndex]]
                 file_path=csv.iloc[row, 5]
                 new_name=name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY)[2]    
-                parent_name = parent_cvs[(parent_cvs.iloc[:, 0] == parent_id) & ((parent_cvs.iloc[:, 5]==file_path) | True if type==Types.Class else False)].values[0][1]
-                rename(type,file_path, parent_name, name, new_name)
+                print('namesmell_refactor')
+                print(name)
+                print(NameEvaluation.name_evaluation(name))
+                
+                print(new_name)
+                print(NameEvaluation.name_evaluation(new_name))
+                #parent_name = parent_cvs[(parent_cvs.iloc[:, 0] == parent_id) & ((parent_cvs.iloc[:, 5]==file_path) | True if type==Types.Class else False)].values[0][1]
+                #rename(type,file_path, parent_name, name, new_name)
+                #print(name)
+                #print(new_name)

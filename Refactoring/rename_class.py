@@ -1,9 +1,9 @@
 from antlr4 import *
 from antlr4.TokenStreamRewriter import TokenStreamRewriter
 
-from gen.javaLabeled.JavaLexer import JavaLexer
-from gen.javaLabeled.JavaParserLabeledListener import JavaParserLabeledListener
-from gen.javaLabeled.JavaParserLabeled import JavaParserLabeled
+from Refactoring.gen.javaLabeled.JavaLexer import JavaLexer
+from Refactoring.gen.javaLabeled.JavaParserLabeledListener import JavaParserLabeledListener
+from Refactoring.gen.javaLabeled.JavaParserLabeled import JavaParserLabeled
 
 
 class RenameClassRefactoringListener(JavaParserLabeledListener):
