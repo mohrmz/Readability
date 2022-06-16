@@ -15,12 +15,12 @@ def namesmell_refactor():
 
 
     for type in [Types.Method,Types.Class]:
-        csv = source_meter_pre_proccess_metric_csv_files(type)
+        csv = source_meter_extract_pkl(type)
         parent_type = Types.Class if type==Types.Method else Types.Package
-        parent_cvs = source_meter_pre_proccess_metric_csv_files(parent_type)
+        parent_cvs = source_meter_extract_pkl(parent_type)
         learned_data = pd.read_pickle(MethodsDataDir if type is Types.Method else ClassesDataDir )
         learned_dataX, learned_dataY = split_files(learned_data,SplitXYIndex)
-    
+        ListResult = []
         for row in range(1,len(csv)) :
             name = correct_names(csv.iloc[row, 1])
             parent_id=csv.iloc[row, 3]
@@ -29,12 +29,14 @@ def namesmell_refactor():
                 file_path=csv.iloc[row, 5]
                 new_name=name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY)[2]    
                 print('namesmell_refactor')
-                print(name)
-                print(NameEvaluation.name_evaluation(name))
-                
-                print(new_name)
-                print(NameEvaluation.name_evaluation(new_name))
+                nameeval = NameEvaluation.name_evaluation(name)
+                newnameeval = NameEvaluation.name_evaluation(new_name)
                 #parent_name = parent_cvs[(parent_cvs.iloc[:, 0] == parent_id) & ((parent_cvs.iloc[:, 5]==file_path) | True if type==Types.Class else False)].values[0][1]
                 #rename(type,file_path, parent_name, name, new_name)
                 #print(name)
                 #print(new_name)
+                ListResult.append([name,',',nameeval,',',new_name,',',newnameeval,',',newnameeval-nameeval])
+
+                result = pd.DataFrame(ListResult)
+                result.to_csv(os.path.join(get_rootpath(),type.name+'result.csv').replace('\\','/'), sep='\t', encoding='utf-8', index=False)    
+                print('finish')

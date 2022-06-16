@@ -3,8 +3,10 @@ import os
 
 MethodsDatapkl='Data\MethodsData.pkl'
 ClassesDatapkl='Data\ClassesData.pkl'
+PackagesDatapkl='Data\PackagesData.pkl'
 MethodsDataDir=os.path.join(os.path.dirname(os.path.realpath(__file__)), MethodsDatapkl).replace('\\','/')
 ClassesDataDir=os.path.join(os.path.dirname(os.path.realpath(__file__)), ClassesDatapkl).replace('\\','/')
+PackagesDataDir=os.path.join(os.path.dirname(os.path.realpath(__file__)), PackagesDatapkl).replace('\\','/')
 Neighbors=10
 Algorithm='auto'
 Metric='euclidean'
@@ -37,4 +39,7 @@ def dir_path():
 
 def sourcemeter_result_dir():
     return os.path.join(get_rootpath(), 'Results')
-    
+
+
+def sourcemeter_result_extract_pkl(type):
+    return os.path.join(get_rootpath(),type+'sData'+'.pkl').replace('\\','/')
