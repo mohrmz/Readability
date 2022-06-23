@@ -17,5 +17,8 @@ def nmi(input,*args):
         for path in ss.hypernym_paths():
             tempresult.append(len(path))
         result.append(min(tempresult))
-    return sum(result)/len(result)
+    if len(result)>0:
+        return sum(result)/len(result)
+    else :
+        return 0
     
