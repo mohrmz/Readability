@@ -5,6 +5,9 @@ def cr(input,*args):
     result = list()
     for w in input :
         result.append(len(tk.tokenize(w)))
-    return sum(result)/len(result)
+    if len(result)>0:
+        return sum(result)/len(result)
+    else :
+        return 0
      
      
