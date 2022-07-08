@@ -5,7 +5,7 @@ from Utilization.undrestand_facilities import *
 from Utilization.constants import *
 from Utilization.source_meter import *
 from NameRecommendation.NameSmellRefactor import *
-
+from Utilization.TFIDF import *
 
 class Main:
 
@@ -24,6 +24,8 @@ class Main:
         LearnFromSourceMeterMetricsFiles.pack(side=tk.LEFT)
         NameSmellRefactor = tk.Button(win, text='NameSmell Refactor', command=namesmell_refactor)
         NameSmellRefactor.pack(side=tk.LEFT)
+        TFIDF = tk.Button(win, text='TFIDF', command=calculate_TFIDF)
+        TFIDF.pack(side=tk.LEFT)
         win.mainloop()
 
     def search_for_file_path(self,root):

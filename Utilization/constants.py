@@ -43,3 +43,6 @@ def sourcemeter_result_dir():
 
 def sourcemeter_result_extract_pkl(type):
     return os.path.join(get_rootpath(),type+'sData'+'.pkl').replace('\\','/')
+
+def sourcemeter_tfidf_extract_pkl(type):
+    return os.path.join(get_rootpath(),type+'s-tfidf'+'.pkl').replace('\\','/')

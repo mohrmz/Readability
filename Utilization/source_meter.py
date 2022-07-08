@@ -1,6 +1,6 @@
 import glob, os
-from .constants import *
-from .pre_proccess import *
+from Utilization.constants import *
+from Utilization.pre_proccess import *
 from NameSmell.Types import *
 
 def source_meter_extract_metrics():
