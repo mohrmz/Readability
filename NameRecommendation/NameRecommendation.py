@@ -41,8 +41,14 @@ def name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY):
         if PrintSegmentChars : print('R Method Name -> ' + RecommendedMethodName,RecommendedMethodNamechars)
         similarity_score = similarity(ExpectedMethodNamechars,RecommendedMethodNamechars)
         SameWordsCount = len([value for value in ExpectedMethodNamechars if value in RecommendedMethodNamechars])
-        Precision = SameWordsCount/len(RecommendedMethodNamechars)
-        Recall = SameWordsCount/len(ExpectedMethodNamechars)
+        if len(RecommendedMethodNamechars) > 0 :
+            Precision = SameWordsCount/len(RecommendedMethodNamechars)
+        else :
+            Precision = 0
+        if len(ExpectedMethodNamechars) > 0 :
+            Recall = SameWordsCount/len(ExpectedMethodNamechars)
+        else :
+            Recall = 0
         SumRecallPrecision = Recall+Precision
         f1score = ((2*Precision*Recall)/(SumRecallPrecision) if SumRecallPrecision>0 else 0)
         WuPalmerScore = similarity_score
