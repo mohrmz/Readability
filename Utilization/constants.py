@@ -23,8 +23,8 @@ PrintSegmentChars=False
 printRecommandNameResult=False
 UseKNeighborsClassifier=False
 PYTHONPATH = os.environ.get("PYTHONPATH") 
-undrestand_directory = PYTHONPATH.replace('\\','/')
-undrestand_directory = undrestand_directory.replace('Python','')
+undrestand_directory = 'd:/Program Files/Scitools/bin/'
+#undrestand_directory = undrestand_directory.replace('Python','')
 
 
 def get_rootpath():

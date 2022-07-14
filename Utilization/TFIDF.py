@@ -35,36 +35,25 @@ def tf_if_pre_proccess_metric_csv_files(files):
             review = [stemmer.stem(word) for word in review if not word in set(stopwords.words('english'))]
             review = " ".join(review)
             corpus.append(review)
-
-        #vectorization
-        #from sklearn.feature_extraction.text import CountVectorizer
-        #cv = CountVectorizer()
-        #bow = cv.fit_transform(corpus).toarray()
-
        
-        tf = TfidfVectorizer()
-        #tfidf = tf.fit_transform(corpus)
-       # print(tfidf.toarray())
-        #print(tf.vocabulary_)
-        #word_count_vector=cv.fit_transform(corpus)
-        #tokens = cv.get_feature_names()
-        #doc_names = ['Doc{:d}'.format(idx) for idx, _ in enumerate(word_count_vector)]
-        #df = pd.DataFrame(data=word_count_vector.toarray(), index=doc_names,
-        #          columns=tokens)
-        # settings that you use for count vectorizer will go here
-        tfidf_vectorizer=TfidfVectorizer(use_idf=True)
- 
-        # just send in all your docs here
-        tfidf_vectorizer_vectors=tfidf_vectorizer.fit_transform(corpus)
+        if not corpus :
+            tf = TfidfVectorizer()
+            #tfidf = tf.fit_transform(corpus)
+            #print(tfidf.toarray())
+            #print(tf.vocabulary_)
+            #word_count_vector=cv.fit_transform(corpus)
+            #tokens = cv.get_feature_names()
+            #doc_names = ['Doc{:d}'.format(idx) for idx, _ in enumerate(word_count_vector)]
+            #df = pd.DataFrame(data=word_count_vector.toarray(), index=doc_names,
+            #          columns=tokens)
 
-        # get the first vector out (for the first document)
-        first_vector_tfidfvectorizer=tfidf_vectorizer_vectors[0]
- 
-        # place tf-idf values in a pandas data frame
-        df = pd.DataFrame(first_vector_tfidfvectorizer.T.todense(), index=tfidf_vectorizer.get_feature_names(), columns=["tf_idf"])
-        df.sort_values(by=["tf_idf"],ascending=False)
-        print(df)
-        print('here')
+            tfidf_vectorizer=TfidfVectorizer(use_idf=True)
+            tfidf_vectorizer_vectors=tfidf_vectorizer.fit_transform(corpus)
+            first_vector_tfidfvectorizer=tfidf_vectorizer_vectors[0]
+            df = pd.DataFrame(first_vector_tfidfvectorizer.T.todense(), index=tfidf_vectorizer.get_feature_names(), columns=["tf_idf"])
+            df.sort_values(by=["tf_idf"],ascending=False)
+            print(df)
+            print('here')
 
 if __name__ == '__main__':   
     calculate_TFIDF()

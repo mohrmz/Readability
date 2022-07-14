@@ -13,13 +13,11 @@ from .constants import *
 
 from dotenv import load_dotenv
 
-
 logging.basicConfig(level=logging.DEBUG)
 
 logger = logging.getLogger(__file__)
 
 load_dotenv()
-
 
 # -------------------
 
@@ -41,7 +39,7 @@ load_dotenv()
 jls_extract_var = sys
 jls_extract_var.path.insert(0, PYTHONPATH)  # Put your path here
 
-os.add_dll_directory(undrestand_directory)
+#os.add_dll_directory(undrestand_directory)
 
 
 # --------------------
