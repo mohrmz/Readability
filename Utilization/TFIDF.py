@@ -32,21 +32,12 @@ def tf_if_pre_proccess_metric_csv_files(files):
             review = re.sub("\b[a-zA-Z]\b", " ", review)
             review = review.lower()
             review = token_to_words(review)
-            review = [stemmer.stem(word) for word in review if not word in set(stopwords.words('english'))]
+            #review = [stemmer.stem(word) for word in review if not word in set(stopwords.words('english'))]
             review = " ".join(review)
             corpus.append(review)
        
-        if not corpus :
+        if corpus :
             tf = TfidfVectorizer()
-            #tfidf = tf.fit_transform(corpus)
-            #print(tfidf.toarray())
-            #print(tf.vocabulary_)
-            #word_count_vector=cv.fit_transform(corpus)
-            #tokens = cv.get_feature_names()
-            #doc_names = ['Doc{:d}'.format(idx) for idx, _ in enumerate(word_count_vector)]
-            #df = pd.DataFrame(data=word_count_vector.toarray(), index=doc_names,
-            #          columns=tokens)
-
             tfidf_vectorizer=TfidfVectorizer(use_idf=True)
             tfidf_vectorizer_vectors=tfidf_vectorizer.fit_transform(corpus)
             first_vector_tfidfvectorizer=tfidf_vectorizer_vectors[0]
