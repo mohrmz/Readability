@@ -22,12 +22,12 @@ def namesmell_refactor():
         learned_dataX, learned_dataY = split_files(learned_data,SplitXYIndex)
         ListResult = []
         for row in range(1,len(csv)) :
-            name = correct_names(csv.iloc[row, 1])
+            name = correct_names(csv.iloc[row, 1],type)
             parent_id=csv.iloc[row, 3]
             if True in NameSmellDetector.namesmell_detect(name,type,['name']).values():
                 test_dataX, test_dataY = [csv.iloc[row:row+1, SplitXYIndex:], csv.iloc[row:row+1, :SplitXYIndex]]
                 file_path=csv.iloc[row, 5]
-                new_name=name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY)[2]    
+                new_name=name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY,type)[2]    
                 #print('begin')
                 start = time.time()
                 nameeval = NameEvaluation.name_evaluation(name)

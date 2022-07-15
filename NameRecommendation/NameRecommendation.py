@@ -13,12 +13,12 @@ import enchant
 eng_dict = enchant.Dict("en_US")
 
 
-def name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY):
+def name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY,type):
     neigh = NearestNeighbors(n_neighbors=Neighbors, algorithm=Algorithm, metric=Metric,
                             n_jobs=N_jobs).fit(learned_dataX)
 
     ExpectedMethodID = test_dataY.iloc[:,0].values[0]
-    ExpectedMethodName = correct_names(test_dataY.iloc[:,1].values[0])
+    ExpectedMethodName = correct_names(test_dataY.iloc[:,1].values[0],type)
     ExpectedMethodNamechars = token_to_words(ExpectedMethodName)
     if PrintSegmentChars : print('Method Name -> ' + ExpectedMethodName,ExpectedMethodNamechars) 
     
@@ -27,7 +27,7 @@ def name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY):
         classifier = KNeighborsClassifier(n_neighbors=Neighbors, algorithm=Algorithm, metric=Metric,n_jobs=N_jobs)
         classifier.fit(learned_dataX, learned_dataY)
         classifier_pred = classifier.predict(test_dataX) 
-        classifier_pred = correct_names(classifier_pred.tolist()[0][1])
+        classifier_pred = correct_names(classifier_pred.tolist()[0][1],type)
 
     distances, indices = neigh.kneighbors(test_dataX, Neighbors)                                 
     recommended_names = indices[0]
