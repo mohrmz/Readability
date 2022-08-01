@@ -36,7 +36,7 @@ def name_recommendation(test_dataX,test_dataY,learned_dataX, learned_dataY,type)
     #print(indices)
     for recommended in recommended_names:
         RecommendedMethodID = recommended
-        RecommendedMethodName = correct_names(learned_dataY.iloc[[recommended], 1].values[0])
+        RecommendedMethodName = correct_names(learned_dataY.iloc[[recommended], 1].values[0],type)
         RecommendedMethodNamechars = token_to_words(RecommendedMethodName)
         if PrintSegmentChars : print('R Method Name -> ' + RecommendedMethodName,RecommendedMethodNamechars)
         similarity_score = similarity(ExpectedMethodNamechars,RecommendedMethodNamechars)

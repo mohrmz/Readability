@@ -21,7 +21,7 @@ def calculate_TFIDF():
         tf_if_pre_proccess_metric_csv_files(source_meter_pre_proccess_metric_csv_files(Types.Class),Types.Class)
 
 def tf_if_pre_proccess_metric_csv_files(files,type):
-        sentences = files.iloc[:,1:2].values
+        sentences = files.iloc[:100,1:2].values
         #cleaning text
         stemmer = PorterStemmer()
         corpus = []
@@ -29,14 +29,14 @@ def tf_if_pre_proccess_metric_csv_files(files,type):
         for sent in sentences:
             print(sent[0])
             review = correct_names(sent[0],type)
-            review = re.sub("[^a-zA-Z]", " ", review)
-            review = re.sub("\b[a-zA-Z]\b", " ", review)
             review = review.lower()
             review = token_to_words(review)
             #review = [stemmer.stem(word) for word in review if not word in set(stopwords.words('english'))]
             review = " ".join(review)
             corpus.append(review)
-       
+        dataframe = pd.DataFrame(corpus)
+        dataframe.to_csv(os.path.join(get_rootpath(),type.name+'tfidf-preresult.csv').replace('\\','/'), encoding='utf-8' ) 
+
         if corpus :
             tf = TfidfVectorizer()
             tfidf_vectorizer=TfidfVectorizer(use_idf=True)
